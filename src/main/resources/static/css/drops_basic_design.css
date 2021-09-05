@@ -1,0 +1,15 @@
+.text-tyrian{
+    color: #59023b;
+}
+.btn-tyrian{
+    color: #FFFFFF;
+    background-color: #59023b;
+}
+.init-height{
+    line-height: initial;
+}
+.drop-signin{
+    max-width: 547px;
+    width: 100%;
+    margin: 0 auto;
+}

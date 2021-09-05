@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"><head>
+<body>
+    <header th:replace="fragments/header"></header>
+    <div class="container">
+        <form method="post" action="/community/write">
+            <select name="community_category"></select>
+            <input type="text" name="community_title" placeholder="Type the title" required>
+            <textarea name="conmmunity_content" id="conmmunity_content" rows="10" cols="100"></textarea>
+
+            <div class="btn-group">
+                <button type="submit">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div th:replace="fragments/footer"></div>
+</body>
+<script type="text/javascript">
+    var oEditors = [];
+    var sLang = "en_US";
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "conmmunity_content",
+        sSkinURI: "../resources/se2/SmartEditor2Skin_en_US.html",
+        fCreator: "createSEditor2",
+        htParams : {
+            bUseModeChanger : true,
+            I18N_LOCALE : sLang
+        },
+
+        fOnAppLoad : function (){
+            oEditors.getById["conmmunity_content"].exec("PASTE_HTML", ["If you want to use a SoundCloud link, please use iFrame tag on HTML mode"]);
+        }
+    });
+
+</script>
+</html>

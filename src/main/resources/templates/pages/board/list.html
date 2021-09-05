@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head">
+</head>
+    <body>
+    <header th:replace="fragments/header"></header>
+    <main class="container" style="text-align: center">
+        <div class="">
+            <form method="get">
+
+            </form>
+            <div class="btn-group">
+                <a type="button" class="btn btn-primary" onclick="window.location.href = './community/write'">Write</a>
+                <form method="get">
+                    <select>
+                        <option>Title</option>
+                        <option>Content</option>
+                        <option>Title or Content</option>
+                        <option>Writer</option>
+                    </select>
+                    <input>
+                </form>
+            </div>
+        </div>
+        <table class="table table-hover">
+            <thead>
+            <tr>
+                <th>#</th>
+                <th>Category</th>
+                <th>Writer</th>
+                <th>Title</th>
+                <th>Comment</th>
+                <th>Like</th>
+                <th>Date</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <a href="#">
+                    <td>1</td>
+                    <td>John</td>
+                    <td>Doe</td>
+                    <td>john@example.com</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+                </a>
+            </tr>
+            </tbody>
+        </table>
+    </main>
+        <div th:replace="fragments/footer"></div>
+    </body>
+
+
+</html>
