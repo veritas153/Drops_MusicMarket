@@ -36,7 +36,6 @@ public class MemberService implements UserDetailsService {
         } else if (email == null || email.length() == 0) {
             return false;
         } else {
-
             pw = bCryptPasswordEncoder.encode(pw);
 
             MemberEntity newUser = new MemberEntity(id, pw, name, nickname, email);

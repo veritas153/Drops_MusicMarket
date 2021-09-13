@@ -11,7 +11,7 @@ public class WebMvcConfig implements WebMvcConfigurer {
 
         LoginInterceptor loginIntercepter = new LoginInterceptor();
         registry.addInterceptor(loginIntercepter)
-                .addPathPatterns()
-                .excludePathPatterns();
+                .addPathPatterns(loginIntercepter.loginEssential)
+                .excludePathPatterns(loginIntercepter.loginUnessential);
     }
 }

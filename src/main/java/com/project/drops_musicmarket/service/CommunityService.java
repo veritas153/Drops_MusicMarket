@@ -1,12 +1,13 @@
 package com.project.drops_musicmarket.service;
 
 import com.project.drops_musicmarket.DTO.CommunityDto;
+import com.project.drops_musicmarket.Entity.CommunityEntity;
 
-import java.util.ArrayList;
+import java.util.List;
 
 public interface CommunityService {
 
-    public ArrayList<CommunityDto> getBoardList();
+    public List<CommunityEntity> getBoardList();
 
-    void writeArticle(CommunityDto article);
+    boolean writeArticle(CommunityDto article);
 }

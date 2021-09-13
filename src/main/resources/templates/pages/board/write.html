@@ -4,13 +4,17 @@
 <body>
     <header th:replace="fragments/header"></header>
     <div class="container">
-        <form method="post" action="/community/write">
-            <select name="community_category"></select>
+        <form method="post" id="formSubmit" action="/community/write">
+            <select name="community_category" required>
+                <option value="Song">Song</option>
+                <option value="Q&A">Q&A</option>
+                <option value="etc">etc</option>
+            </select>
             <input type="text" name="community_title" placeholder="Type the title" required>
-            <textarea name="conmmunity_content" id="conmmunity_content" rows="10" cols="100"></textarea>
-
+            <textarea name="community_content" id="community_content" rows="20" cols="100"></textarea>
+            <input type="file" name="community_track" id="community_track" accept=".wav, .mp3, .flac" placeholder="wav, mp3, flac are available">
             <div class="btn-group">
-                <button type="submit">Submit</button>
+                <button onclick="checkValue(this)">Submit</button>
             </div>
         </form>
     </div>
@@ -19,20 +23,54 @@
 <script type="text/javascript">
     var oEditors = [];
     var sLang = "en_US";
+
     nhn.husky.EZCreator.createInIFrame({
         oAppRef: oEditors,
-        elPlaceHolder: "conmmunity_content",
+        elPlaceHolder: "community_content",
         sSkinURI: "../resources/se2/SmartEditor2Skin_en_US.html",
         fCreator: "createSEditor2",
         htParams : {
             bUseModeChanger : true,
-            I18N_LOCALE : sLang
+            I18N_LOCALE : sLang,
+            fOnBeforeUnload : function(){}
         },
 
         fOnAppLoad : function (){
-            oEditors.getById["conmmunity_content"].exec("PASTE_HTML", ["If you want to use a SoundCloud link, please use iFrame tag on HTML mode"]);
+            oEditors.getById["community_content"].exec("PASTE_HTML", ["If you want to post a SoundCloud link, use HTML mode and paste iFrame tag."]);
         }
     });
+
+    function checkValue(elClickedObj){
+        oEditors.getById["community_content"].exec("UPDATE_CONTENTS_FIELD", []);
+
+        document.getElementById('formSubmit').onsubmit
+    }
+
+    // function submitArticle(){
+    //
+    //     var category = document.getElementById("community_category");
+    //     var title = document.getElementById("community_title");
+    //     var content = document.getElementById("community_content");
+    //
+    //     if (category.value.length == null || category.value.length == 0) {
+    //         alert("Please select category you want to post!");
+    //         stop();
+    //
+    //     } else if (title.value.length == null || title.value.length <= 4) {
+    //         alert("Please type more than four letters on title ");
+    //         stop();
+    //
+    //     } else if (content.value.length == null || content.value.length <= 4){
+    //         alert("Please type more than four letters on title ");
+    //         stop();
+    //     } else {
+    //
+    //     }
+    //
+    // }
+
+
+
 
 </script>
 </html>

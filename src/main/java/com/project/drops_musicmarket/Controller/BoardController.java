@@ -1,13 +1,17 @@
 package com.project.drops_musicmarket.Controller;
 
 import com.project.drops_musicmarket.DTO.CommunityDto;
-import com.project.drops_musicmarket.DTO.MemberDto;
 //import com.project.drops_musicmarket.service.CommunityServiceImpl;
+import com.project.drops_musicmarket.Entity.CommunityEntity;
+import com.project.drops_musicmarket.Entity.MemberEntity;
 import com.project.drops_musicmarket.service.CommunityService;
-import com.project.drops_musicmarket.service.CommunityServiceImpl;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import javax.servlet.http.HttpServletRequest;
+import java.util.List;
 
 @Controller
 public class BoardController {
@@ -19,32 +23,47 @@ public class BoardController {
     }
 
     @GetMapping("/community")
-    public String community() {
-//        ArrayList<CommunityDto> boardList = CommunityRepository.findAll().stream().map(CommunityDto::new).collect(Collectors.toList());
-
-
+    public String community(Model model) {
+        List<CommunityEntity> boardList = communityService.getBoardList();
+        model.addAttribute("boardList", boardList);
 
         return "pages/board/list";
     }
 
     @GetMapping("/community/read")
-    public String readArticle(CommunityDto article) {
+    public String readArticle() {
 
         return "pages/board/readContent";
     }
 
     @GetMapping("/community/write")
-    public String writeArticle(){
-        return "pages/board/write";
+    public String writeArticle(HttpServletRequest request){
+        MemberEntity user = (MemberEntity) request.getSession().getAttribute("user");
+
+        if (user != null) {
+            return "pages/board/write";
+        } else {
+            return "redirect:/community";
+        }
     }
+
+
 
     @PostMapping("/community/write")
-    public String writeArticle(MemberDto user, CommunityDto article){
-
+    public String writeArticle(HttpServletRequest request, CommunityDto article){
+        MemberEntity user = (MemberEntity) request.getSession().getAttribute("user");
         article.setCommunity_member_id(user.getMember_id());
-        communityService.writeArticle(article);
 
-        return "pages/board/write";
+        System.out.println(article);
+
+        boolean articleCheck = communityService.writeArticle(article);
+
+        if (articleCheck == true) {
+            return "pages/board/list";
+        }else {
+            return "redirect:/community/write";
+        }
     }
+
 
 }

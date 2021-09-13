@@ -3,6 +3,7 @@ package com.project.drops_musicmarket.Controller;
 import com.project.drops_musicmarket.DTO.MemberDto;
 import com.project.drops_musicmarket.Entity.MemberEntity;
 import com.project.drops_musicmarket.service.MemberService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;

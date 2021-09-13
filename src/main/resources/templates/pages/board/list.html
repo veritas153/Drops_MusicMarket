@@ -35,16 +35,15 @@
             </tr>
             </thead>
             <tbody>
-            <tr>
-                <a href="#">
-                    <td>1</td>
-                    <td>John</td>
-                    <td>Doe</td>
-                    <td>john@example.com</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </a>
+            <tr th:each="boardList : ${boardList}">
+                <td></td>
+                <td th:text="${boardList.community_category}"></td>
+                <td th:text="${boardList.community_member_id}"></td>
+                <td th:text="${boardList.community_title}">
+                </td>
+                <td th:text="${boardList.community_member_id}"></td>
+                <td th:text="${boardList.community_member_id}"></td>
+                <td th:text="${boardList.community_date}"></td>
             </tr>
             </tbody>
         </table>
