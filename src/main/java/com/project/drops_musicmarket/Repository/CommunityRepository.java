@@ -11,5 +11,7 @@ public interface CommunityRepository extends JpaRepository<CommunityEntity, Long
 
 //    Page<CommunityEntity> categorySearch(Pageable pageable, String community_category);
 
+    Page<CommunityEntity> findAll(Pageable pageable);
+
 
 }

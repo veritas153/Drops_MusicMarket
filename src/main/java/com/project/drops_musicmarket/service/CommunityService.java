@@ -10,4 +10,6 @@ public interface CommunityService {
     public List<CommunityEntity> getBoardList();
 
     boolean writeArticle(CommunityDto article);
+
+    CommunityDto getArticle(long community_oriNum);
 }

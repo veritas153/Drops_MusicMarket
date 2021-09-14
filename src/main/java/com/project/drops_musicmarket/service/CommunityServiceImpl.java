@@ -36,7 +36,7 @@ public class CommunityServiceImpl implements CommunityService {
         if (id == null || id.length() == 0){
             return false;
         }
-        else if (category == null || category == "#"){
+        else if (category == null || category == "#" || category == ""){
             return false;
         }
         else if (title == null || title.length() <= 4){
@@ -50,12 +50,20 @@ public class CommunityServiceImpl implements CommunityService {
 //        }
         else {
             CommunityEntity newPost = new CommunityEntity(id, category, title, content);
-            System.out.println(newPost);
 
-            System.out.println(newPost);
+            System.out.println(newPost); // I'm letting to leave this one just right now because I have to fix issue for datetime.
             communityRepository.save(newPost);
             return true;
         }
+    }
+
+    @Override
+    public CommunityDto getArticle(long community_oriNum) {
+
+
+
+
+        return null;
     }
 
 }

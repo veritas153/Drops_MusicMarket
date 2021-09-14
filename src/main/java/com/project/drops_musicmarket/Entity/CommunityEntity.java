@@ -19,9 +19,6 @@ public class CommunityEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long community_oriNum;
 
-    @Column
-    private int community_num;
-
     @Column(nullable = true)
     private int community_commentNum;
 

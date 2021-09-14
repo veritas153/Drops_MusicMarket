@@ -9,6 +9,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import javax.servlet.http.HttpServletRequest;
 import java.util.List;
@@ -31,9 +32,16 @@ public class BoardController {
     }
 
     @GetMapping("/community/read")
-    public String readArticle() {
+    public String readArticle(@RequestParam("community_oriNum") long community_oriNum, Model model) {
+        CommunityDto readArticle = communityService.getArticle(community_oriNum);
 
-        return "pages/board/readContent";
+        if (readArticle != null){
+            model.addAttribute("article", readArticle);
+            return "pages/board/readContent";
+        } else {
+            return "redirect:/community";
+        }
+
     }
 
     @GetMapping("/community/write")
@@ -46,8 +54,6 @@ public class BoardController {
             return "redirect:/community";
         }
     }
-
-
 
     @PostMapping("/community/write")
     public String writeArticle(HttpServletRequest request, CommunityDto article){

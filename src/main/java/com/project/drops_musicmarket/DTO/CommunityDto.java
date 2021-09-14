@@ -8,6 +8,7 @@ import lombok.ToString;
 import java.io.File;
 import java.util.Date;
 
+
 @Getter
 @Setter
 @ToString
@@ -15,7 +16,6 @@ import java.util.Date;
 public class CommunityDto {
 
     private long community_oriNum;
-    private int community_num;
     private int community_commentNum;
     private String community_title;
     private String community_category;
@@ -25,5 +25,14 @@ public class CommunityDto {
     private Date community_date;
     private String community_member_id;
 
+    public CommunityDto(long community_oriNum, String community_member_id, String community_category, String community_title, int community_like, int community_commentNum, Date community_date){
+        this.community_oriNum = community_oriNum;
+        this.community_category = community_category;
+        this.community_member_id = community_member_id;
+        this.community_title = community_title;
+        this.community_like = community_like;
+        this.community_commentNum = community_commentNum;
+        this.community_date = community_date;
+    }
 
 }
