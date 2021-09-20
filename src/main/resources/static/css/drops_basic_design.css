@@ -1,3 +1,14 @@
+body{
+    background: #eee;
+}
+
+header, main{
+    background: #FFFFFF;
+}
+main{
+    text-align: center;
+}
+
 .text-tyrian{
     color: #59023b;
 }
@@ -12,4 +23,61 @@
     max-width: 547px;
     width: 100%;
     margin: 0 auto;
+}
+.sidebar-color{
+    background-color: #59023b;
+    color: #FFFFFF;
+}
+.footer-yellow{
+    background-color: #ffc107;
+}
+.comment-place{
+    display: flow-root;
+}
+.content-area{
+    min-height: 406px;
+}
+#searchValue, .searchInput{
+    height: 100%;
+    padding: 10px;
+    vertical-align: center;
+}
+#findResult{
+    height: 100%;
+}
+.comment-area{
+    float: left;
+    width: 89%;
+    height: 95px;
+    padding: 10px;
+    line-height: initial;
+}
+.comment-submit{
+    float: right;
+    width: 10%;
+    height: 95px;
+    border-radius: 5px;
+}
+.comment-submit::after{
+    clear: both;
+    content: '';
+}
+.title-area{
+    height: 50px;
+}
+.title-area > select{
+    padding: 5px;
+    width: calc(17% - 1px);
+}
+.title-area > input{
+    width: 80%;
+    padding: 10px;
+}
+.smartEditorArea{
+    width: calc(98% + 4px);
+}
+.submit-round{
+    width: 100px;
+    height: 40px;
+    border-radius: 5px;
 }

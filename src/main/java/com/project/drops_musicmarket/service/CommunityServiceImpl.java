@@ -18,6 +18,7 @@ public class CommunityServiceImpl implements CommunityService {
     public List<CommunityEntity> getBoardList() {
 
         List<CommunityEntity> boardList = communityRepository.findAll();
+        System.out.println(boardList);
 
         return boardList;
     }
@@ -58,12 +59,30 @@ public class CommunityServiceImpl implements CommunityService {
     }
 
     @Override
-    public CommunityDto getArticle(long community_oriNum) {
+    public CommunityEntity getArticle(long community_oriNum) {
+        CommunityEntity readPosting = communityRepository.getById(community_oriNum);
 
+        if (readPosting != null){
+            return readPosting;
+        } else {
+            return null;
+        }
 
-
-
-        return null;
     }
+
+    @Override
+    public List<CommunityEntity> findComment(long community_oriNum) {
+        List<CommunityEntity> commentList = communityRepository.findComment(community_oriNum);
+
+        System.out.println(commentList);
+
+        if (commentList != null && !commentList.isEmpty()){
+            return commentList;
+        } else {
+            return null;
+        }
+
+    }
+
 
 }

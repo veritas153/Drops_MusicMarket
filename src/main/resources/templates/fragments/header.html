@@ -1,14 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 
-<header class="p-3 text-dark" th:fragment="header">
+<header class="pt-3 text-dark" th:fragment="header">
     <div class="container">
         <div class="d-flex flex-wrap align-items-center justify-content-center justify-content-lg-start">
             <a href="/" class="d-flex align-items-center mb-2 mb-lg-0 text-dark text-decoration-none">
                 <img th:src="@{/image/structure/mainLogo.png}" width="200" height="100">
             </a>
 
-            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-0">
+            <ul class="nav col-12 col-lg-auto me-lg-auto mb-2 justify-content-center mb-md-1">
                 <li><a href="/sounds" class="nav-link px-2 text-tyrian">Sounds</a></li>
                 <li><a href="/plugins" class="nav-link px-2 text-tyrian">Plugins</a></li>
                 <li><a href="/competition" class="nav-link px-2 text-tyrian">Competition</a></li>
@@ -16,7 +16,7 @@
                 <li><a href="/service" class="nav-link px-2 text-tyrian">Help & Contact</a></li>
             </ul>
 
-            <div class="text-end">
+            <div class="text-end mb-md-1">
                 <button th:if="${session['user'] == null}" type="button" class="btn btn-warning" onclick="location.href='/login'">Login</button>
                 <button th:if="${session['user'] == null}"  type="button" class="btn btn-tyrian" onclick="location.href='/signup'">Sign-up</button>
                 <div th:if="${session['user'] != null}" class="dropdown text-end">

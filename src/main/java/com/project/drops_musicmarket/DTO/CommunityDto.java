@@ -16,7 +16,7 @@ import java.util.Date;
 public class CommunityDto {
 
     private long community_oriNum;
-    private int community_commentNum;
+    private Integer community_commentNum;
     private String community_title;
     private String community_category;
     private String community_content;
@@ -25,7 +25,7 @@ public class CommunityDto {
     private Date community_date;
     private String community_member_id;
 
-    public CommunityDto(long community_oriNum, String community_member_id, String community_category, String community_title, int community_like, int community_commentNum, Date community_date){
+    public CommunityDto(long community_oriNum, String community_member_id, String community_category, String community_title, int community_like, Integer community_commentNum, Date community_date){
         this.community_oriNum = community_oriNum;
         this.community_category = community_category;
         this.community_member_id = community_member_id;

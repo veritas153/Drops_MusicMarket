@@ -11,5 +11,7 @@ public interface CommunityService {
 
     boolean writeArticle(CommunityDto article);
 
-    CommunityDto getArticle(long community_oriNum);
+    CommunityEntity getArticle(long community_oriNum);
+
+    List<CommunityEntity> findComment(long community_oriNum);
 }

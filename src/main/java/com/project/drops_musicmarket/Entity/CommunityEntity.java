@@ -19,23 +19,23 @@ public class CommunityEntity {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long community_oriNum;
 
-    @Column(nullable = true)
-    private int community_commentNum;
-
     @Column
+    private Integer community_commentNum; // int is primitive type so int or float type can't have null value.
+
+    @Column(nullable = false)
     private String community_title;
 
-    @Column
+    @Column(nullable = false)
     private String community_category;
 
-    @Column
+    @Column(nullable = false)
     private String community_content;
 
     @Column
     private File community_track;
 
-    @Column
-    private int community_like;
+    @Column(nullable = false)
+    private long community_like;
 
     @Column
     private Date community_date;

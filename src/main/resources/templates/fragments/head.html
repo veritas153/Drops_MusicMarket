@@ -13,10 +13,13 @@
         <!-- Font Awesome -->
         <script src="https://kit.fontawesome.com/df538817a2.js" crossorigin="anonymous"></script>
 
-
-        <link th:href="@{/resources/se2/css/en_US/smart_editor2.css}" rel="stylesheet">
-        <script type="text/javascript" th:src="@{/resources/se2/js/service/HuskyEZCreator.js}"></script>
-
         <link rel="stylesheet" th:href="@{/css/drops_basic_design.css}">
         <title th:text="${title}">Drops: Where Your Music Goes</title>
+
+        <link th:if="${#httpServletRequest.requestURI == '/community/write' || #httpServletRequest.requestURI == '/community/edit'}" th:href="@{/resources/se2/css/en_US/smart_editor2.css}" rel="stylesheet">
+        <script th:if="${#httpServletRequest.requestURI == '/community/write' || #httpServletRequest.requestURI == '/community/edit'}" type="text/javascript" th:src="@{/resources/se2/js/service/HuskyEZCreator.js}"></script>
+
+        <script th:if="${article?.getCommunity_track != null}" src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script>
+
+
 </head>
