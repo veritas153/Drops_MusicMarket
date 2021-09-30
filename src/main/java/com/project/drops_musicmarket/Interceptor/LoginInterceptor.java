@@ -16,7 +16,7 @@ import java.util.List;
 public class LoginInterceptor implements HandlerInterceptor {
 
     public List loginEssential
-            = Arrays.asList("/mypage/**", "/community/write");
+            = Arrays.asList("/mypage/**", "/community/write", "/community/edit");
 
     public List loginUnessential
             = Arrays.asList("/community");

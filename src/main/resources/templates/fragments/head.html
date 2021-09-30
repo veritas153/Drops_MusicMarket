@@ -19,7 +19,7 @@
         <link th:if="${#httpServletRequest.requestURI == '/community/write' || #httpServletRequest.requestURI == '/community/edit'}" th:href="@{/resources/se2/css/en_US/smart_editor2.css}" rel="stylesheet">
         <script th:if="${#httpServletRequest.requestURI == '/community/write' || #httpServletRequest.requestURI == '/community/edit'}" type="text/javascript" th:src="@{/resources/se2/js/service/HuskyEZCreator.js}"></script>
 
-        <script th:if="${article?.getCommunity_track != null}" src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script>
+        <script th:if="${article?.getCommunityTrack() != null}" src="//cdnjs.cloudflare.com/ajax/libs/wavesurfer.js/1.4.0/wavesurfer.min.js"></script>
 
 
 </head>

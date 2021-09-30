@@ -21,7 +21,6 @@ public class MemberService implements UserDetailsService {
 
         String id = user.getMember_id();
         String pw = user.getMember_password();
-        String name = user.getMember_name();
         String nickname = user.getMember_nickname();
         String email = user.getMember_email();
 
@@ -31,15 +30,13 @@ public class MemberService implements UserDetailsService {
             return false;
         } else if (pw == null || pw.length() == 0) {
             return false;
-        } else if (name == null || name.length() == 0) {
-            return false;
         } else if (email == null || email.length() == 0) {
             return false;
         } else {
             pw = bCryptPasswordEncoder.encode(pw);
+            user.setMember_password(pw);
 
-            MemberEntity newUser = new MemberEntity(id, pw, name, nickname, email);
-            memberRepository.save(newUser);
+            memberRepository.save(user.toEntity());
 
             return true;
         }

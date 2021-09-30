@@ -1,9 +1,7 @@
 package com.project.drops_musicmarket.DTO;
 
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
-import lombok.ToString;
+import com.project.drops_musicmarket.Entity.CommunityEntity;
+import lombok.*;
 
 import java.io.File;
 import java.util.Date;
@@ -15,24 +13,46 @@ import java.util.Date;
 @NoArgsConstructor
 public class CommunityDto {
 
-    private long community_oriNum;
-    private Integer community_commentNum;
-    private String community_title;
-    private String community_category;
-    private String community_content;
-    private File community_track;
-    private int community_like;
-    private Date community_date;
-    private String community_member_id;
+    private long communityNum;
+    private String communityTitle;
+    private String communityNickname;
+    private String communityCategory;
+    private String communityContent;
+    private File communityTrack;
+    private int communityLike;
+    private Date communityDate;
+    private String communityMemberId;
 
-    public CommunityDto(long community_oriNum, String community_member_id, String community_category, String community_title, int community_like, Integer community_commentNum, Date community_date){
-        this.community_oriNum = community_oriNum;
-        this.community_category = community_category;
-        this.community_member_id = community_member_id;
-        this.community_title = community_title;
-        this.community_like = community_like;
-        this.community_commentNum = community_commentNum;
-        this.community_date = community_date;
+    public CommunityEntity toEntity() {
+        CommunityEntity communityEntity = CommunityEntity.builder()
+                .communityTitle(communityTitle)
+                .communityCategory(communityCategory)
+                .communityNickname(communityNickname)
+                .communityContent(communityContent)
+                .communityTrack(communityTrack)
+                .communityLike(communityLike)
+//                .communityDate(communityDate)
+                .communityMemberId(communityMemberId)
+                .build();
+
+        return communityEntity;
     }
+
+    @Builder
+    public CommunityDto(long communityNum, String communityCategory,
+                        String communityNickname, String communityTitle, String communityContent, int communityLike,
+                        File communityTrack, Date communityDate, String communityMemberId){
+
+        this.communityNum = communityNum;
+        this.communityCategory = communityCategory;
+        this.communityMemberId = communityMemberId;
+        this.communityNickname = communityNickname;
+        this.communityTitle = communityTitle;
+        this.communityContent = communityContent;
+        this.communityLike = communityLike;
+        this.communityTrack = communityTrack;
+        this.communityDate = communityDate;
+    }
+
 
 }

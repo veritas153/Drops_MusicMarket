@@ -19,12 +19,18 @@
             <div class="text-end mb-md-1">
                 <button th:if="${session['user'] == null}" type="button" class="btn btn-warning" onclick="location.href='/login'">Login</button>
                 <button th:if="${session['user'] == null}"  type="button" class="btn btn-tyrian" onclick="location.href='/signup'">Sign-up</button>
-                <div th:if="${session['user'] != null}" class="dropdown text-end">
+                <div th:if="${session['user'] != null}" class="dropdown text-end d-flex">
+                    <a href="#" class="link-dark me-5" id="shopList" data-bs-toggle="dropdown" aria-expanded="false">
+                        <i class="fas fa-shopping-cart"></i>
+                    </a>
+                    <ul class="dropdown-menu text-small dropdown-menu-lg-end" aria-labelledby="shopList">
+                        <li><a class="dropdown-item" href="#">ddd</a></li>
+                    </ul>
                     <a href="#" class="d-block link-dark text-decoration-none dropdown-toggle" id="dropdownUser1" data-bs-toggle="dropdown" aria-expanded="false">
                         <img th:if="${session.user.getMember_image() != null}" src="https://github.com/mdo.png" alt="mdo" width="32" height="32" class="rounded-circle">
                         <i th:if="${session.user.getMember_image() == null}" class="far fa-user rounded-circle" alt="mdo" width="32" height="32"></i>
                     </a>
-                    <ul class="dropdown-menu text-small" aria-labelledby="dropdownUser1" style="">
+                    <ul class="dropdown-menu text-small dropdown-menu-lg-end" aria-labelledby="dropdownUser1" style="">
                         <li><a class="dropdown-item" href="/mypage">My Page</a></li>
                         <li><a class="dropdown-item" href="setting">Settings</a></li>
                         <li><hr class="dropdown-divider"></li>

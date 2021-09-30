@@ -13,52 +13,51 @@
                     <div th:replace="fragments/boardList/sidebar"></div>
                     <div class="mx-auto p-3" style="width: 75%;">
                         <div class="border-bottom pb-3 text-start" style="margin: -1px;">
-                            <h3 th:text="${article.getCommunity_title()}"></h3>
+                            <h3 th:text="${article.getCommunityTitle()}"></h3>
                         </div>
                         <div class="d-flex justify-content-between my-3 " >
                             <div class="d-flex justify-content-start">
-                                <h4 th:text="${article.getCommunity_member_id()}"></h4>
-                                <h5 class="text-light ms-5" th:text="${article.getCommunity_category()}"></h5>
+                                <h4 th:text="${article.getCommunityNickname()}"></h4>
+                                <h5 class="text-light ms-5" th:text="${article.getCommunityCategory()}"></h5>
                             </div>
                             <div>
-                                <h5 th:text="'Like: '+${article.getCommunity_like()}"></h5>
-                                <h5 th:text="${article.getCommunity_date()}"></h5>
+                                <h5 th:text="'Like: '+${article.getCommunityLike()}"></h5>
+                                <h5 th:text="${#dates.format(article.getCommunityDate(), 'MM.dd.yyyy')}"></h5>
                             </div>
                         </div>
                         <div class="border-bottom py-3 text-start content-area">
-                            <th:block th:utext="${article.getCommunity_content()}">
+                            <th:block th:utext="${article.getCommunityContent()}">
                         </div>
                         <div class="">
-                            <div th:if="${article.getCommunity_track() != null}">
+                            <div th:if="${article.getCommunityTrack() != null}">
                                 <div id="waveform"></div>
                             </div>
                         </div>
                         <div class="d-flex justify-content-end py-3">
-                            <a type="button" class="btn btn-primary me-2" onclick="window.location.href = './write'">Write</a>
-                            <a type="button" class="btn btn-primary me-2" onclick="window.location.href = './edit'">Edit</a>
-                            <a type="button" class="btn btn-primary" onclick="window.location.href = './delete'">Delete</a>
+                            <a type="button" class="btn btn-primary me-2" href='./write'>Write</a>
+                            <a type="button" class="btn btn-primary me-2" th:href="@{/community/edit(communityNum=${article.getCommunityNum()})}">Edit</a>
+                            <a type="button" class="btn btn-primary" th:href="@{/community/delete(communityNum=${article.getCommunityNum()})}">Delete</a>
                         </div>
                         <div class="mx-auto py-3 comment-place">
-                            <form method="post" action="/community/read">
+                            <form th:if="${session['user'] != null}" method="post" action="/community/read">
                                 <textarea name="commnunity_content" id="community_content" class="comment-area" placeholder="Write down comment here."></textarea>
                                 <button class="btn-tyrian comment-submit" type="submit">Submit</button>
                             </form>
+                            <div th:if="${session['user'] == null}">
+                                <h5>You have to log-in if you want to reply!</h5>
+                                <a href="/login">Log-in</a>
+                            </div>
                         </div>
                         <div class="py-3 border-bottom">
                             <h4>Comments</h4>
-                            <th:block th:if="${comment != null}">
-                                <div class="" th:each="comment : ${comment}">
-                                    <div th:text="${comment.getCommunity_content}"></div>
-                                </div>
-                            </th:block>
+
                         </div>
                     </div>
                 </div>
             </main>
-
         <div th:replace="fragments/footer"></div>
     </body>
-<script th:if="${article.getCommunity_track != null}">
+<script th:if="${article.getCommunityTitle() != null}">
 
 </script>
 </html>

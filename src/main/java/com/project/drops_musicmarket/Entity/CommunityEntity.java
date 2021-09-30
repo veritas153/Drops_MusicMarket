@@ -1,61 +1,67 @@
 package com.project.drops_musicmarket.Entity;
 
-import lombok.AccessLevel;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
+import org.hibernate.annotations.DynamicUpdate;
 
 import javax.persistence.*;
 import java.io.File;
 import java.util.Date;
 
 @Getter
+@DynamicUpdate
 @Entity(name="community")
 @AllArgsConstructor
 @NoArgsConstructor(access = AccessLevel.PROTECTED)
 public class CommunityEntity {
 
     @Id
+    @Column(name = "communityNum")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private long community_oriNum;
+    private long communityNum;
 
-    @Column
-    private Integer community_commentNum; // int is primitive type so int or float type can't have null value.
+    @Column(name = "communityTitle", nullable = false)
+    private String communityTitle;
 
-    @Column(nullable = false)
-    private String community_title;
+    @Column(name = "communityCategory", nullable = false)
+    private String communityCategory;
 
-    @Column(nullable = false)
-    private String community_category;
+    @Column(name = "communityNickname", nullable = false)
+    private String communityNickname;
 
-    @Column(nullable = false)
-    private String community_content;
+    @Column(name = "communityContent", nullable = false)
+    private String communityContent;
 
-    @Column
-    private File community_track;
+    @Column(name = "communityTrack")
+    private File communityTrack;
 
-    @Column(nullable = false)
-    private long community_like;
+    @Column(name = "communityLike", nullable = false)
+    private long communityLike;
 
-    @Column
-    private Date community_date;
+    @Column(name = "communityDate", updatable = false)
+    private Date communityDate;
 
-    @JoinColumn(name="member_id")
-    private String community_member_id;
+    @JoinColumn(name="communityMemberId")
+    private String communityMemberId;
 
-    @PreUpdate // This is for Date setting when someone posts something on board.
-    void community_date(){
-        this.community_date = new Date();
+    @PrePersist // This is for Date setting when someone posts something on board.
+    void communityDate(){
+        this.communityDate = new Date();
     }
 
-    public CommunityEntity(String community_member_id, String community_category, String community_title, String community_content) {
-        this.community_member_id = community_member_id;
-        this.community_category = community_category;
-        this.community_title = community_title;
-        this.community_content = community_content;
+    @Builder
+    public CommunityEntity(long communityNum, String communityCategory, String communityTitle,
+                           String communityNickname, String communityContent, File communityTrack,
+                           long communityLike, String communityMemberId) {
+
+        this.communityNum = communityNum;
+        this.communityCategory = communityCategory;
+        this.communityTitle = communityTitle;
+        this.communityNickname =communityNickname;
+        this.communityContent = communityContent;
+        this.communityTrack = communityTrack;
+        this.communityDate = communityDate;
+        this.communityMemberId = communityMemberId;
+
     }
-
-
-
 
 }

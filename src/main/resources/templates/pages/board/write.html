@@ -12,25 +12,26 @@
             <div class="d-flex justify-content-between">
                 <div th:replace="fragments/boardList/sidebar"></div>
                 <div class="mx-auto content-area" style="width: 75%;">
-                    <form method="post" id="formSubmit" action="/community/write">
-                        <div class="d-flex justify-content-start mb-3 title-area" >
-                            <select name="community_category" class="me-3" required>
+
+                        <form method="post" id="formSubmit" action="/community/write">
+                            <div class="d-flex justify-content-start mb-3 title-area" >
+                            <select name="communityCategory" id="communityCategory" class="me-3" required>
                                 <option value="#">Category</option>
                                 <option value="Song">Song</option>
                                 <option value="Q&A">Q&A</option>
                                 <option value="etc">etc</option>
                             </select>
-                            <input type="text" name="community_title"placeholder="Type the title" required>
+                            <input type="text" name="communityTitle" placeholder="Type the title" required>
                         </div>
                         <div>
-                            <textarea class="smartEditorArea" name="community_content" id="community_content" rows="20"></textarea>
+                            <textarea class="smartEditorArea" name="communityContent" id="communityContent" rows="20"></textarea>
                         </div>
                         <div id="uploadTrack">
                             <div class="my-3 align-middle">
                                 <h5>Track upload</h5>
                                 <div class="border-top">
                                     <div class="my-3 d-flex justify-content-start">
-                                        <input type="file" name="community_track" id="community_track" accept=".wav, .mp3, .flac">
+                                        <input type="file" name="communityTrack" id="communityTrack" accept=".wav, .mp3, .flac">
                                     </div>
                                 </div>
                             </div>
@@ -44,13 +45,13 @@
         </main>
         <div th:replace="fragments/footer"></div>
     </body>
-    <script type="text/javascript">
+    <script th:inline="javascript">
         var oEditors = [];
         var sLang = "en_US";
 
         nhn.husky.EZCreator.createInIFrame({
             oAppRef: oEditors,
-            elPlaceHolder: "community_content",
+            elPlaceHolder: "communityContent",
             sSkinURI: "../resources/se2/SmartEditor2Skin_en_US.html",
             fCreator: "createSEditor2",
             htParams : {
@@ -60,18 +61,16 @@
             },
 
             fOnAppLoad : function (){
-                oEditors.getById["community_content"].exec("PASTE_HTML", ["If you want to post a SoundCloud link, use HTML mode and paste iFrame tag."]);
+                oEditors.getById["communityContent"].exec("PASTE_HTML", ["If you want to post a SoundCloud link, use HTML mode and paste iFrame tag."]);
             }
         });
 
         function checkValue(elClickedObj){
-            oEditors.getById["community_content"].exec("UPDATE_CONTENTS_FIELD", []);
-
+            oEditors.getById["communityContent"].exec("UPDATE_CONTENTS_FIELD", []);
             document.getElementById('formSubmit').onsubmit
         }
 
         function openTrackContainer(){
-
             var categoryType = document.getElementById('uploadTrack')
 
         }

@@ -1,70 +1,73 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
-<head th:replace="fragments/head">
-</head>
-    <body>
-    <header th:replace="fragments/header"></header>
-    <main class="container">
-        <div class="mb-3 p-3 d-flex justify-content-between border-bottom ">
-            <a class="text-decoration-none link-dark" href="/community">
-                <h2 class="text-start pb-2 mb-0">Community</h2>
-            </a>
-        </div>
-        <div class="d-flex justify-content-between">
-            <div th:replace="fragments/boardList/sidebar"></div>
-            <div class="mx-auto content-area" style="width: 75%;">
-                <div class="d-flex justify-content-end pb-3">
-                    <a type="button" class="btn btn-primary me-2" onclick="window.location.href = './community/write'">Write</a>
-                    <form method="get" action="/community/search">
-                        <select name="searchValue" id="searchValue" class="me-2">
-                            <option value="Title">Title</option>
-                            <option value="Content">Content</option>
-                            <option value="Writer">Writer</option>
-                        </select>
-                        <input class="me-2 searchInput">
-                        <button class="btn btn-warning mb-1" id="findResult" type="submit">Search</button>
-                    </form>
-                </div>
-                <table class="table table-hover">
-                    <thead>
-                        <tr>
-                            <th>Category</th>
-                            <th>Writer</th>
-                            <th>Title</th>
-                            <th>Comment</th>
-                            <th>Like</th>
-                            <th>Date</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr th:each="boardList : ${boardList}" th:if="${boardList.community_commentNum == null}" style="cursor: pointer" th:onclick="'javascript:rowClicked('+${boardList.community_oriNum}+');'">
-                            <td th:text="${boardList.community_category}"></td>
-                            <td th:text="${boardList.community_member_id}"></td>
-                            <td th:text="${boardList.community_title}">
-                            </td>
-                            <td th:text="${boardList.community_member_id}"></td>
-                            <td th:text="${boardList.community_member_id}"></td>
-                            <td th:text="${boardList.community_date}"></td>
-                        </tr>
-                    </tbody>
-                </table>
-                <nav class="page navigation">
-                    <ul class="pagination justify-content-center">
-                        <li class="page-item"><a class="page-link" href="#">Previous</a></li>
-                        <li class="page-item"><a class="page-link" href="#">1</a></li>
-                        <li class="page-item active"><a class="page-link" href="#">2</a></li>
-                        <li class="page-item"><a class="page-link" href="#">3</a></li>
-                        <li class="page-item"><a class="page-link" href="#">Next</a></li>
-                    </ul>
-                </nav>
+<head th:replace="fragments/head"></head>
+<body>
+<header th:replace="fragments/header"></header>
+<main class="container">
+    <div class="mb-3 p-3 d-flex justify-content-between border-bottom ">
+        <a class="text-decoration-none link-dark" href="/community">
+            <h2 class="text-start pb-2 mb-0">Community</h2>
+        </a>
+    </div>
+    <div class="d-flex justify-content-between">
+        <div th:replace="fragments/boardList/sidebar"></div>
+        <div class="mx-auto content-area" style="width: 75%;">
+            <div class="d-flex justify-content-end pb-3">
+                <a type="button" class="btn btn-primary me-2"
+                   onclick="window.location.href = './community/write'">Write</a>
+                <form method="get" action="/community/search">
+                    <select name="searchValue" id="searchValue" class="me-2">
+                        <option value="Title">Title</option>
+                        <option value="Content">Content</option>
+                        <option value="Writer">Writer</option>
+                    </select>
+                    <input class="me-2 searchInput">
+                    <button class="btn btn-warning mb-1" id="findResult" type="submit">Search</button>
+                </form>
             </div>
+            <table class="table table-hover">
+                <thead>
+                <tr>
+                    <th>Category</th>
+                    <th>Writer</th>
+                    <th>Title</th>
+                    <th>Comment</th>
+                    <th>Like</th>
+                    <th>Date</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr th:each="boardList : ${boardList}"
+                    style="cursor: pointer" th:onclick="'javascript:rowClicked('+${boardList.communityNum}+');'">
+                    <td th:text="${boardList.communityCategory}"></td>
+                    <td th:text="${boardList.communityNickname}"></td>
+                    <td th:text="${boardList.communityTitle}">
+                    </td>
+                    <td th:text="${boardList.communityMemberId}"></td>
+                    <td th:text="${boardList.communityLike}"></td>
+                    <td th:text="${#dates.format(boardList.communityDate, 'MM.dd.yyyy')}"></td>
+                </tr>
+                </tbody>
+            </table>
+            <nav class="page navigation">
+                <ul class="pagination justify-content-center">
+                    <li class="page-item"><a class="page-link" href="?page=1"><<</a></li>
+                    <li class="page-item"><a class="page-link" href="#"><</a></li>
+                    <th:block th:each="pageNum : ${pageList}" th:inline="text">
+                        <li class="page-item"><a class="page-link" th:href="@{'/community?page=' + ${pageNum}}">[[${pageNum}]]</a></li>
+                    </th:block>
+                    <li class="page-item"><a class="page-link" href="#">></a></li>
+                    <li class="page-item"><a class="page-link" href="#">>></a></li>
+                </ul>
+            </nav>
         </div>
-    </main>
-        <div th:replace="fragments/footer"></div>
-    </body>
-    <script>
-        function rowClicked(value){
-            location.href="/community/read?community_oriNum=" + value;
-        }
-    </script>
+    </div>
+</main>
+<div th:replace="fragments/footer"></div>
+</body>
+<script>
+    function rowClicked(value) {
+        location.href = "/community/read?communityNum=" + value;
+    }
+</script>
 </html>
