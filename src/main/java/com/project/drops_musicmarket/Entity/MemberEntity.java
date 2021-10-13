@@ -14,32 +14,33 @@ import java.lang.reflect.Member;
 public class MemberEntity {
 
     @Id
-    private String member_id;
+    private String memberId;
 
     @Column(nullable = false, length = 255)
-    private String member_password;
+    private String memberPassword;
 
     @Column(nullable = false, length=20)
-    private String member_nickname;
+    private String memberNickname;
 
     @Column(nullable = false, unique = true, length = 50)
-    private String member_email;
+    private String memberEmail;
 
     @Column
-    private String member_level;
+    private String memberLevel;
 
     @Column(nullable = true, length = 255)
-    private String member_image;
+    private String memberImage;
 
 
     @Builder
-    public MemberEntity(String member_id, String member_password, String member_nickname, String member_email, String member_level, String member_image){
-        this.member_id = member_id;
-        this.member_password = member_password;
-        this.member_nickname = member_nickname;
-        this.member_email = member_email;
-        this.member_level = member_level;
-        this.member_image = member_image;
+    public MemberEntity(String memberId, String memberPassword, String memberNickname,
+                        String memberEmail, String memberLevel, String memberImage){
+        this.memberId = memberId;
+        this.memberPassword = memberPassword;
+        this.memberNickname = memberNickname;
+        this.memberEmail = memberEmail;
+        this.memberLevel = memberLevel;
+        this.memberImage = memberImage;
 
     }
 

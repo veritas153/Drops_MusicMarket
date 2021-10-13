@@ -101,7 +101,7 @@ public class CommunityServiceImpl implements CommunityService {
 
             }
 
-            CommunityEntity ddd = communityRepository.save(article.toEntity());
+            communityRepository.save(article.toEntity());
 
             return true;
         }
@@ -111,7 +111,6 @@ public class CommunityServiceImpl implements CommunityService {
     public CommunityDto getArticle(long communityNum) {
         Optional<CommunityEntity> findArticle = communityRepository.findById(communityNum);
         CommunityEntity findResult = findArticle.get();
-
 
         CommunityDto readPosting = CommunityDto.builder()
                 .communityNum(findResult.getCommunityNum())
