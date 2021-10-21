@@ -25,7 +25,7 @@
 This portfolio website is for pro and amature musicians who interested in comupter music. The whole concept is inspired by *Splice*; and also some websites such as *Loopmasters*, *W.A. Production* are references for some UI. 
 
 ## Elements
-This portfolio was constructed with these framework/library, and other sources might be added more/
+This portfolio was constructed with these framework/library, and other sources might be added more.
 
 * Spring Boot
 * JPA
