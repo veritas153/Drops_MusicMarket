@@ -4,10 +4,6 @@
 
 이 포트폴리오는 현직자 및 아마추어 음악 프로듀서들을 대상으로 한 음원 판매 및 커뮤니티 사이트를 표방하여 만들어진 웹사이트 입니다. 전체적인 아이디어는 *Splice*에 영감을 받았고 부분적으로 *Loopmasters*, *W.A. Production*과 같은 사이트에서 UI를 참고했습니다. 
 
-## 목적
-
-해외에선 프로 및 아마추어들을 대상으로 하는 커뮤니티 및 음원 공유 사이트가 점차 확대 되어가는 상황임에 불구하고 우리나라에선 아직까진 인터넷 강의 사이트나 커뮤니티 사이트 정도로만 존재하고 있는 상황이 다소 아쉬웠습니다. 언어의 장벽때문에 더 좋고 잠재력이 있는 사이트들을 이용할 수 없다는 사실에 다소 아쉬운 마음으로 ‘내가, 혹은 우리나라 사람들이 이러한 서비스를 구축한다면 어떻게 할 수 있을까’를 고민하면서 제작했습니다.
-
 ## 구축 요소
 이 포트폴리오는 다음과 같은 프레임워크 / 라이브러리에 의해 제작되었으며 추후 늘어날 수도 있음을 밝힙니다.
 
@@ -23,3 +19,19 @@
 
 
 # About the Portfoilo (ENG)
+
+## Introduction
+
+This portfolio website is for pro and amature musicians who interested in comupter music. The whole concept is inspired by *Splice*; and also some websites such as *Loopmasters*, *W.A. Production* are references for some UI. 
+
+## Elements
+This portfolio was constructed with these framework/library, and other sources might be added more/
+
+* Spring Boot
+* JPA
+* MySQL
+* Bootstrap
+
+## 기타
+1. The sample and plugins uploaded in this website is not actual files; except tracks in community page. Due to the copyright issue and upload limitation of Github, so there are not files that relate with.
+2. The actual payment wouldn't be working though there is a process for purchasing items. However, please do not type your real information that can relate with your financial information.
