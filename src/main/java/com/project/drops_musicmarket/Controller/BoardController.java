@@ -71,8 +71,8 @@ public class BoardController {
     @PostMapping("/community/write")
     public String writeArticle(HttpServletRequest request, CommunityDto article) {
         MemberEntity user = (MemberEntity) request.getSession().getAttribute("user");
-        article.setCommunityMemberId(user.getMember_id());
-        article.setCommunityNickname(user.getMember_nickname());
+        article.setCommunityMemberId(user.getMemberId());
+        article.setCommunityNickname(user.getMemberNickname());
 
         boolean articleCheck = communityService.writeArticle(article);
 
@@ -86,7 +86,7 @@ public class BoardController {
     @GetMapping("/community/edit")
     public String editArticle(@RequestParam("communityNum") long communityNum, Model model, HttpServletRequest request) {
         MemberEntity user = (MemberEntity) request.getSession().getAttribute("user");
-        String userId = user.getMember_id();
+        String userId = user.getMemberId();
 
         if (user == null) {
             return "redirect:/community/read?communityNum=" + communityNum;
@@ -107,14 +107,14 @@ public class BoardController {
     @PostMapping("/community/edit")
     public String editArticle(@RequestParam("communityNum") long communityNum, HttpServletRequest request, CommunityDto editedArticle) {
         MemberEntity user = (MemberEntity) request.getSession().getAttribute("user");
-        String userId = user.getMember_id();
+        String userId = user.getMemberId();
 
         if (user == null) {
             return "redirect:/community/read?communityNum=" + communityNum;
         }
 
-        editedArticle.setCommunityMemberId(user.getMember_id());
-        editedArticle.setCommunityNickname(user.getMember_nickname());
+        editedArticle.setCommunityMemberId(user.getMemberId());
+        editedArticle.setCommunityNickname(user.getMemberNickname());
         boolean article = communityService.editArticle(communityNum, editedArticle);
 
         return "redirect:/community";
@@ -123,7 +123,7 @@ public class BoardController {
     @GetMapping("/community/delete")
     public String deleteArticle(@RequestParam("communityNum") long communityNum, HttpServletRequest request){
         MemberEntity user = (MemberEntity) request.getSession().getAttribute("user");
-        String userId = user.getMember_id();
+        String userId = user.getMemberId();
 
         if (user == null) {
             return "redirect:/community/read?communityNum=" + communityNum;

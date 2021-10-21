@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+  <head th:replace="fragments/head"></head>
+  <body>
+  <header th:replace="fragments/header"></header>
+    <main class="container">
+      <div class="mb-3 p-3 d-flex justify-content-between border-bottom ">
+        <a class="text-decoration-none link-dark" href="/community">
+          <h2 class="text-start pb-2 mb-0">Sounds</h2>
+        </a>
+      </div>
+      <form action="/sounds/add" method="post"  id="formSubmit" enctype="multipart/form-data">
+        <div class="m-3 d-flex flex-row">
+          <div class="me-5 d-flex flex-row">
+            <h5 class="me-3">Type: </h5>
+            <select type="text" id="soundType" name="soundType" placeholder="type sample's category in here.">
+              <option value="Sample">Sample</option>
+              <option value="Preset">Preset</option>
+              <option value="Bundle">Bundle</option>
+            </select>
+          </div>
+          <div class="d-flex flex-row">
+            <h5 class="me-3">Name: </h5>
+            <input type="text" name="soundName" id="soundName" placeholder="Type product name">
+          </div>
+        </div>
+        <div class="m-3 d-flex flex-row">
+          <div class="me-5 d-flex flex-row">
+            <h5 class="me-3">Genre:</h5>
+            <input name="soundGenre" id="soundGenre" placeholder="Type suitable genres and distinguish them with ','.">
+          </div>
+          <div class="d-flex flex-row">
+            <h5 class="me-3">Seller:</h5>
+            <input name="soundSeller" id="soundSeller" placeholder="Type product seller">
+          </div>
+        </div>
+        <div class="mx-auto content-area m-3">
+          <textarea class="smartEditorArea" name="soundDescription" id="soundDescription" rows="20"></textarea>
+        </div>
+        <div class="m-1">
+            <div class="d-flex justify-content-between">
+              <div class="my-3 d-flex justify-content-start">
+                <h5 class="me-3">Sample File: </h5>
+                <p class="me-3">Please post image in suggested ratio(0.6:1) </p>
+                <input type="file" name="sampleValue" id="sampleValue" accept=".zip, .rar, .tar, .apk, .7z">
+              </div>
+            </div>
+        </div>
+        <div class="m-1">
+          <div class="border-top d-flex justify-content-between">
+            <div class="my-3 d-flex justify-content-start">
+              <h5 class="me-3">Image Upload: </h5>
+              <input type="file" name="imageValue" id="imageValue" accept=".img, .jpg, .png">
+            </div>
+            <div class="my-3 d-flex justify-content-start me-3">
+              <h5 class="me-3">Product price: </h5>
+              <input type="number" step="0.01" name="soundPrice" id="soundPrice">
+            </div>
+          </div>
+        </div>
+        <div class="pb-5 btn-group d-flex justify-content-end">
+          <button class="me-3 btn-tyrian submit-round" onclick="checkValue(this)">Submit</button>
+        </div>
+      </form>
+    </main>
+    <div th:replace="fragments/footer"></div>
+  </body>
+  <script th:inline="javascript">
+    var oEditors = [];
+    var sLang = "en_US";
+
+    nhn.husky.EZCreator.createInIFrame({
+      oAppRef: oEditors,
+      elPlaceHolder: "soundDescription",
+      sSkinURI: "../resources/se2/SmartEditor2Skin_en_US.html",
+      fCreator: "createSEditor2",
+      htParams: {
+        bUseModeChanger: true,
+        I18N_LOCALE: sLang,
+        fOnBeforeUnload: function () {
+        }
+      },
+
+      fOnAppLoad: function () {
+        oEditors.getById["soundDescription"].exec("PASTE_HTML", [""]);
+      }
+    });
+
+    function checkValue(elClickedObj) {
+      oEditors.getById["soundDescription"].exec("UPDATE_CONTENTS_FIELD", []);
+      document.getElementById('formSubmit').onsubmit
+    }
+
+  </script>
+</html>

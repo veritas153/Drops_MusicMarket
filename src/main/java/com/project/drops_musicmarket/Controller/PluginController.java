@@ -36,8 +36,9 @@ public class PluginController {
     public String addPlugin(HttpServletRequest request){
 
         MemberEntity user = (MemberEntity) request.getSession().getAttribute("user");
+        String memberLevel = user.getMemberLevel();
 
-        if (user != null && user.getMemberLevel() == "ADMIN") {
+        if (user != null && memberLevel.equals("ADMIN")) {
             return "/pages/plugin/add";
         } else {
             return "redirect:/plugins";

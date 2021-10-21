@@ -3,7 +3,6 @@ package com.project.drops_musicmarket.Controller;
 import com.project.drops_musicmarket.DTO.MemberDto;
 import com.project.drops_musicmarket.Entity.MemberEntity;
 import com.project.drops_musicmarket.service.MemberService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,12 +24,11 @@ public class HomeController {
     }
 
     @GetMapping("/login")
-    public String loginPage(){return "pages/member/login";}
+    public String loginPage(){return "/pages/member/login";}
 
     @PostMapping("/login")
     public String loginPage(HttpServletRequest request, MemberDto user){
         HttpSession session = request.getSession();
-
         MemberEntity verifyUser = memberService.loginUser(user);
 
         if (verifyUser != null){

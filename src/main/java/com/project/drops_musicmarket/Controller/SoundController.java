@@ -38,7 +38,7 @@ public class SoundController {
         String checkAuth = user.getMemberLevel();
 
         if (checkAuth.equals("ADMIN")){
-            return "pages/sound/add";
+            return "/pages/sound/add";
         }
 
         return "redirect:/sounds";
