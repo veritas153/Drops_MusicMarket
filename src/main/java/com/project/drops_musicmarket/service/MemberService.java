@@ -19,12 +19,14 @@ public class MemberService implements UserDetailsService {
 
     public boolean signup(MemberDto user){
 
-        String id = user.getMemberId();
-        String pw = user.getMemberPassword();
-        String nickname = user.getMemberNickname();
-        String email = user.getMemberEmail();
+        String id = user.getMember_id();
+        String pw = user.getMember_password();
+        String nickname = user.getMember_nickname();
+        String email = user.getMember_email();
 
-        if (id == null || id.length() == 0) {
+        if (user.getMember_id() == null || user.getMember_id().length() == 0){
+            return false;
+        } else if (id == null || id.length() == 0) {
             return false;
         } else if (pw == null || pw.length() == 0) {
             return false;
@@ -32,7 +34,7 @@ public class MemberService implements UserDetailsService {
             return false;
         } else {
             pw = bCryptPasswordEncoder.encode(pw);
-            user.setMemberPassword(pw);
+            user.setMember_password(pw);
 
             memberRepository.save(user.toEntity());
 
@@ -46,11 +48,11 @@ public class MemberService implements UserDetailsService {
     }
 
     public MemberEntity loginUser(MemberDto user){
-        String id = user.getMemberId();
-        String pw = user.getMemberPassword();
+        String id = user.getMember_id();
+        String pw = user.getMember_password();
 
         MemberEntity checkUser = memberRepository.getById(id);
-        if (checkUser != null && bCryptPasswordEncoder.matches(pw, checkUser.getMemberPassword())){
+        if (checkUser != null && bCryptPasswordEncoder.matches(pw, checkUser.getMember_password())){
             return checkUser;
         } else{
             return null;

@@ -9,33 +9,33 @@ import lombok.*;
 @NoArgsConstructor
 public class MemberDto {
 
-   private String memberId;
-   private String memberPassword;
-   private String memberNickname;
-   private String memberEmail;
-   private String memberLevel;
-   private String memberImage;
+   private String member_id;
+   private String member_password;
+   private String member_nickname;
+   private String member_email;
+   private String member_level;
+   private String member_image;
 
    public MemberEntity toEntity(){
       MemberEntity memberEntity = MemberEntity.builder()
-              .memberId(memberId)
-              .memberPassword(memberPassword)
-              .memberNickname(memberNickname)
-              .memberEmail(memberEmail)
-              .memberImage(memberImage)
+              .member_id(member_id)
+              .member_password(member_password)
+              .member_nickname(member_nickname)
+              .member_email(member_email)
+              .member_image(member_image)
               .build();
 
       return memberEntity;
    }
 
    @Builder
-   public MemberDto(String memberId, String memberPassword, String memberNickname,
-                    String memberEmail, String member_image){
-         this.memberId = memberId;
-         this.memberPassword = memberPassword;
-         this.memberNickname = memberNickname;
-         this.memberEmail = memberEmail;
-         this.memberImage = memberImage;
+   public MemberDto(String member_id, String member_password, String member_nickname,
+                    String member_email, String member_image){
+         this.member_id = member_id;
+         this.member_password = member_password;
+         this.member_nickname = member_nickname;
+         this.member_email = member_email;
+         this.member_image = member_image;
    }
 
 }

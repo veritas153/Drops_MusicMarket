@@ -81,3 +81,7 @@ main{
     height: 40px;
     border-radius: 5px;
 }
+
+.image-width{
+    max-width: 200px;
+}

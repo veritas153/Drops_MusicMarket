@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="fragments/head"><head>
+<body>
+<header th:replace="fragments/header"></header>
+<main class="container">
+    <div class="mb-3 p-3 d-flex justify-content-between border-bottom ">
+        <a class="text-decoration-none link-dark" href="/community">
+            <h2 class="text-start pb-2 mb-0">Community</h2>
+        </a>
+    </div>
+    <div class="d-flex justify-content-between">
+        <div th:replace="fragments/boardList/sidebar"></div>
+        <div class="mx-auto content-area" style="width: 75%;">
+
+            <form method="post" id="formSubmit" th:action="@{/community/edit}" enctype="multipart/form-data">
+                <input th:value="${article?.getCommunityNum()}" name="communityNum" id="communityNum" style="visibility: hidden;">
+                <div class="d-flex justify-content-start mb-3 title-area">
+                    <select name="communityCategory" id="communityCategory"
+                            th:value="${article?.getCommunityCategory()}" class="me-3" required>
+                        <option value="#">Category</option>
+                        <option value="Song" th:selected="${article?.getCommunityCategory() == 'Song'}">Song</option>
+                        <option value="Q&A" th:selected="${article?.getCommunityCategory() == 'Q&A'}">Q&A</option>
+                        <option value="etc" th:selected="${article?.getCommunityCategory() == 'etc'}">etc</option>
+                    </select>
+                    <input type="text" th:value="${article?.getCommunityTitle()}" name="communityTitle" placeholder="Type the title" required>
+                </div>
+                <div>
+                    <textarea class="smartEditorArea" name="communityContent" id="communityContent" rows="20"></textarea>
+                </div>
+                <div id="uploadTrack">
+                    <div class="my-3 align-middle">
+                        <h5>Track upload</h5>
+                        <div class="border-top">
+                            <div class="my-3 d-flex justify-content-start">
+                                <input type="file" th:value="${article?.getCommunityTrack()}" name="communityTrack"
+                                       id="communityTrack" accept=".wav, .mp3, .flac">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="mb-5 btn-group d-flex justify-content-end">
+                    <button class="me-3 btn-tyrian submit-round" onclick="checkValue(this)">Submit</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</main>
+<div th:replace="fragments/footer"></div>
+</body>
+<script th:inline="javascript">
+    var oEditors = [];
+    var sLang = "en_US";
+
+    /*<![CDATA[*/
+    var editValue = [[${article?.getCommunityContent()}]];
+    /*]]>*/
+
+    nhn.husky.EZCreator.createInIFrame({
+        oAppRef: oEditors,
+        elPlaceHolder: "communityContent",
+        sSkinURI: "../resources/se2/SmartEditor2Skin_en_US.html",
+        fCreator: "createSEditor2",
+        htParams: {
+            bUseModeChanger: true,
+            I18N_LOCALE: sLang,
+            fOnBeforeUnload: function () {
+            }
+        },
+
+        fOnAppLoad: function () {
+            if (editValue != null) {
+                oEditors.getById["communityContent"].exec("PASTE_HTML", [editValue]);
+            } else {
+                oEditors.getById["communityContent"].exec("PASTE_HTML", ["If you want to post a SoundCloud link, use HTML mode and paste iFrame tag."]);
+            }
+        }
+    });
+
+    function checkValue(elClickedObj) {
+        oEditors.getById["communityContent"].exec("UPDATE_CONTENTS_FIELD", []);
+        document.getElementById('formSubmit').onsubmit
+    }
+
+    function openTrackContainer() {
+        var categoryType = document.getElementById('uploadTrack')
+
+    }
+
+
+</script>
+</html>

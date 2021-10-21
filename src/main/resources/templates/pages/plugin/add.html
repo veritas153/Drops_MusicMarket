@@ -9,33 +9,25 @@
           <h2 class="text-start pb-2 mb-0">Sounds</h2>
         </a>
       </div>
-      <form action="/sounds/add" method="post"  id="formSubmit" enctype="multipart/form-data">
+      <form action="/plugins/add" method="post"  id="formSubmit" enctype="multipart/form-data">
         <div class="m-3 d-flex flex-row">
-          <div class="me-5 d-flex flex-row">
-            <h5 class="me-3">Type: </h5>
-            <select name="soundType" id="soundType" placeholder="Select sample type">
-              <option value="Sample">Sample</option>
-              <option value="Preset">Preset</option>
-              <option value="Bundle">Bundle</option>
-            </select>
-          </div>
           <div class="d-flex flex-row">
             <h5 class="me-3">Name: </h5>
-            <input type="text" name="soundName" id="soundName" placeholder="Type product name">
+            <input type="text" name="pluginName" id="pluginName" placeholder="Type product name">
           </div>
         </div>
         <div class="m-3 d-flex flex-row">
           <div class="me-5 d-flex flex-row">
             <h5 class="me-3">Genre: </h5>
-            <input type="text" id="soundGenre" name="soundGenre" placeholder="type genre that suitable for this sample (Use ',' when you distinguish more than two genre.">
+            <input type="text" id="pluginType" name="pluginType" placeholder="type plugin's category in here.">
           </div>
           <div class="d-flex flex-row">
             <h5 class="me-3">Seller:</h5>
-            <input name="soundSeller" id="soundSeller" placeholder="Type product seller">
+            <input name="pluginSeller" id="pluginSeller" placeholder="Type product seller">
           </div>
         </div>
         <div class="mx-auto content-area m-3">
-          <textarea class="smartEditorArea" name="soundDescription" id="soundDescription" rows="20"></textarea>
+          <textarea class="smartEditorArea" name="pluginDescription" id="pluginDescription" rows="20"></textarea>
         </div>
         <div class="m-1">
             <div class="d-flex justify-content-between">
@@ -54,7 +46,7 @@
             </div>
             <div class="my-3 d-flex justify-content-start me-3">
               <h5 class="me-3">Product price: </h5>
-              <input type="number" step="0.01" name="soundPrice" id="soundPrice">
+              <input type="number" step="0.01" name="pluginPrice" id="pluginPrice">
             </div>
           </div>
         </div>
@@ -71,7 +63,7 @@
 
     nhn.husky.EZCreator.createInIFrame({
       oAppRef: oEditors,
-      elPlaceHolder: "soundDescription",
+      elPlaceHolder: "pluginDescription",
       sSkinURI: "../resources/se2/SmartEditor2Skin_en_US.html",
       fCreator: "createSEditor2",
       htParams: {
@@ -82,12 +74,12 @@
       },
 
       fOnAppLoad: function () {
-        oEditors.getById["soundDescription"].exec("PASTE_HTML", [""]);
+        oEditors.getById["pluginDescription"].exec("PASTE_HTML", [""]);
       }
     });
 
     function checkValue(elClickedObj) {
-      oEditors.getById["soundDescription"].exec("UPDATE_CONTENTS_FIELD", []);
+      oEditors.getById["pluginDescription"].exec("UPDATE_CONTENTS_FIELD", []);
       document.getElementById('formSubmit').onsubmit
     }
 

@@ -58,7 +58,7 @@ public class CommunityEntity {
         this.communityTitle = communityTitle;
         this.communityNickname =communityNickname;
         this.communityContent = communityContent;
-//        this.communityTrack = communityTrack;
+        this.communityTrack = communityTrack;
         this.communityDate = communityDate;
         this.communityMemberId = communityMemberId;
 

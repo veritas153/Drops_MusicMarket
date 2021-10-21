@@ -14,8 +14,5 @@ import java.util.List;
 public interface CommunityRepository extends JpaRepository<CommunityEntity, Long> {
 
     Page<CommunityEntity> findAll(Pageable pageable);
-//
-//    @Query(value = "SELECT * FROM community WHERE community_commentNum = :community_oriNum", nativeQuery = true)
-//    List<CommunityEntity> findComment(@Param("community_oriNum") long community_oriNum);
 
 }

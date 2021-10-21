@@ -31,6 +31,7 @@ public class CommunityDto {
                 .communityContent(communityContent)
                 .communityTrack(communityTrack)
                 .communityLike(communityLike)
+//                .communityDate(communityDate)
                 .communityMemberId(communityMemberId)
                 .build();
 

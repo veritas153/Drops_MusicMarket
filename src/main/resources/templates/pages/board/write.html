@@ -12,8 +12,9 @@
             <div class="d-flex justify-content-between">
                 <div th:replace="fragments/boardList/sidebar"></div>
                 <div class="mx-auto content-area" style="width: 75%;">
-                    <form method="post" id="formSubmit" action="/community/write" enctype="multipart/form-data">
-                        <div class="d-flex justify-content-start mb-3 title-area" >
+
+                        <form method="post" id="formSubmit" action="/community/write">
+                            <div class="d-flex justify-content-start mb-3 title-area" >
                             <select name="communityCategory" id="communityCategory" class="me-3" required>
                                 <option value="#">Category</option>
                                 <option value="Song">Song</option>
@@ -30,7 +31,7 @@
                                 <h5>Track upload</h5>
                                 <div class="border-top">
                                     <div class="my-3 d-flex justify-content-start">
-                                        <input type="file" name="trackValue" id="trackValue" accept=".wav, .mp3, .flac">
+                                        <input type="file" name="communityTrack" id="communityTrack" accept=".wav, .mp3, .flac">
                                     </div>
                                 </div>
                             </div>

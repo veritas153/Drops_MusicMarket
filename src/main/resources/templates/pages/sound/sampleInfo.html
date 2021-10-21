@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+    <head th:replace="fragments/head"></head>
+    <body>
+        <header th:replace="fragments/header"></header>
+        <main class="container">
+            <div class="row align-items-center g-5 py-5">
+                <div class="col-sm px-0">
+                    <img class="image-width" th:src="${soundInfo.getSoundImage()}">
+                </div>
+                <div class="col-10 col-sm-8 col-lg-6">
+                    <div class="">
+                        <h1 th:text="${soundInfo.getSoundName()}"></h1>
+                        <p>Seller:
+                            <a th:href="@{/sounds(seller=${soundInfo.getSoundSeller()})}" >
+                                <th:block th:text="${soundInfo.getSoundSeller()}" />
+                            </a>
+                        </p>
+                        <p>Type:
+                            <th:block th:text="${soundInfo.getSoundType()}" />
+                        </p>
+                        <p>Genre:
+                            <th:block th:text="${soundInfo.getSoundGenre()}" />
+                        </p>
+                        <p>Price:
+                            <th:block th:text="${soundInfo.getSoundPrice()}" />
+                        </p>
+                    </div>
+                    <div class="mt-5">
+                        <a href="#" class="btn-tyrian btn">Add to Cart</a>
+                    </div>
+                </div>
+                <div>
+                    <h3>Description</h3>
+                    <div class="my-4" th:utext="${soundInfo.getSoundDescription()}"></div>
+                </div>
+            </div>
+
+        </main>
+        <div th:replace="fragments/footer"></div>
+    </body>
+</html>
