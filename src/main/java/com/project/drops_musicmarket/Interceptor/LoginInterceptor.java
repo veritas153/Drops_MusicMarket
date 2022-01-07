@@ -1,15 +1,13 @@
 package com.project.drops_musicmarket.Interceptor;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.springframework.ui.ModelMap;
+
+import com.project.drops_musicmarket.DTO.CartDto;
+import com.project.drops_musicmarket.service.CartService;
 import org.springframework.web.servlet.HandlerInterceptor;
 import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
-import java.net.http.HttpRequest;
 import java.util.Arrays;
 import java.util.List;
 
@@ -36,6 +34,7 @@ public class LoginInterceptor implements HandlerInterceptor {
             response.sendRedirect("/member/login");
             return false;
         }
+
     }
 
     @Override

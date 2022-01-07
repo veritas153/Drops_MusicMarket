@@ -11,6 +11,7 @@ import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.PrePersist;
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Date;
 
 @Getter
@@ -44,17 +45,17 @@ public class PluginEntity {
     private BigDecimal pluginPrice;
 
     @Column(nullable = false)
-    private Date pluginDate;
+    private LocalDate pluginDate;
 
     @PrePersist
     void pluginDate() {
-        this.pluginDate = new Date();
+        this.pluginDate = LocalDate.now();
     }
 
     @Builder
     public PluginEntity(long pluginId, String pluginName, String pluginSeller,
                         String pluginType, String pluginDescription, String pluginImage,
-                        String pluginFile, BigDecimal pluginPrice, Date pluginDate) {
+                        String pluginFile, BigDecimal pluginPrice, LocalDate pluginDate) {
 
         this.pluginId = pluginId;
         this.pluginName = pluginName;

@@ -188,6 +188,7 @@ public class SoundServiceImpl implements SoundService {
         SoundEntity getInfo = checkInfo.get();
 
         SoundDto infoResult = SoundDto.builder()
+                .soundId(getInfo.getSoundId())
                 .soundName(getInfo.getSoundName())
                 .soundImage(getInfo.getSoundImage())
                 .soundPrice(getInfo.getSoundPrice())

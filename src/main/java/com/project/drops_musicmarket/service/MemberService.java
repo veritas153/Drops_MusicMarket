@@ -49,13 +49,19 @@ public class MemberService implements UserDetailsService {
         String id = user.getMemberId();
         String pw = user.getMemberPassword();
 
-        MemberEntity checkUser = memberRepository.getById(id);
-       if (checkUser != null && bCryptPasswordEncoder.matches(pw, checkUser.getMemberPassword())){
-            return checkUser;
-        } else{
+        MemberEntity checkUser;
+
+        try {
+            checkUser = memberRepository.getById(id);
+            if (checkUser != null && bCryptPasswordEncoder.matches(pw, checkUser.getMemberPassword())){
+                return checkUser;
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
             return null;
         }
 
+        return null;
     }
 
 

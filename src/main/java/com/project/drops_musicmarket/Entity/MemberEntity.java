@@ -14,6 +14,7 @@ import java.lang.reflect.Member;
 public class MemberEntity {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private String memberId;
 
     @Column(nullable = false, length = 255)
@@ -25,7 +26,7 @@ public class MemberEntity {
     @Column(nullable = false, unique = true, length = 50)
     private String memberEmail;
 
-    @Column
+    @Column(columnDefinition = "varchar(10) default 'USER'")
     private String memberLevel;
 
     @Column(nullable = true, length = 255)

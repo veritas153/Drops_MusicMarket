@@ -2,6 +2,8 @@ package com.project.drops_musicmarket.Controller;
 
 import com.project.drops_musicmarket.DTO.SoundDto;
 import com.project.drops_musicmarket.Entity.MemberEntity;
+import com.project.drops_musicmarket.service.CartService;
+import com.project.drops_musicmarket.service.SoundService;
 import com.project.drops_musicmarket.service.SoundServiceImpl;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +18,13 @@ import java.util.List;
 @Controller
 public class SoundController {
 
-    public final SoundServiceImpl soundService;
+    public final SoundService soundService;
+    public final CartService cartService;
 
-    public SoundController(SoundServiceImpl soundService){ this.soundService = soundService;}
+    public SoundController(SoundService soundService, CartService cartService){
+        this.soundService = soundService;
+        this.cartService = cartService;
+    }
 
     @GetMapping("/sounds")
     public String soundList(Model model, @RequestParam(value="page", defaultValue = "1") Integer pageNum){
@@ -75,6 +81,30 @@ public class SoundController {
 
         return "/pages/sound/sampleInfo";
     }
+
+    @GetMapping("/store/sounds")
+    public String addCart(@RequestParam("soundId") String productId, HttpServletRequest request){
+        MemberEntity user = (MemberEntity) request.getSession().getAttribute("user");
+
+        if (user == null) {
+            return "redirect:/login";
+        }
+
+        String userId = user.getMemberId();
+
+        SoundDto detectSound = soundService.getSoundInfo(productId);
+        String checkSoundId = detectSound.getSoundId();
+
+        if (!checkSoundId.isEmpty()){
+            cartService.addProduct(detectSound, userId);
+            return "/sounds/info?" + productId;
+        }
+
+        return "";
+    }
+
+
+
 
 
 

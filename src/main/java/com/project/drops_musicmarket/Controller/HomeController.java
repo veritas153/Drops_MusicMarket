@@ -33,7 +33,7 @@ public class HomeController {
 
         if (verifyUser != null){
             session.setAttribute("user", verifyUser);
-            return "home";
+            return "redirect:/";
         } else {
             return "redirect:/login";
         }
@@ -50,7 +50,7 @@ public class HomeController {
         if (!memberService.signup(user)){
             return "redirect:/signup";
         } else {
-            return "home";
+            return "redirect:/";
         }
 
     }
@@ -59,7 +59,7 @@ public class HomeController {
     public String signout(HttpServletRequest request){
 
         request.getSession().removeAttribute("user");
-        return "home";
+        return "redirect:/";
 
     }
 

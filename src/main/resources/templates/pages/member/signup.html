@@ -3,8 +3,8 @@
     <head th:replace="fragments/head"></head>
     <body>
         <header th:replace="fragments/header"></header>
-            <div class="text-center container">
-                <main class="drop-signin">
+            <main class="container" style="min-height:500px;">
+                <div class="drop-signin">
                     <form method="post" th:action="@{/signup}">
                         <h1 class="h3 mb-3 fw-normal">Welcome to Drops!</h1>
 
@@ -35,8 +35,8 @@
                         <button class="w-100 btn btn-tyrian btn-primary" aria-label="Disabled" type="submit">Sign up</button>
                         <p class="mt-5 mb-3 text-muted">© 2017–2021</p>
                     </form>
-                </main>
-            </div>
+                </div>
+            </main>
         <div th:replace="fragments/footer"></div>
     </body>
 </html>
