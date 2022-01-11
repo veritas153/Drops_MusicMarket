@@ -1,8 +1,17 @@
 package com.project.drops_musicmarket.service;
 
 
-import com.project.drops_musicmarket.DTO.SoundDto;
+import com.project.drops_musicmarket.DTO.CartDto;
+
+import java.util.List;
 
 public interface CartService {
-    void addProduct(SoundDto detectSound, String userId);
+    List<CartDto> getCartList(String userId, Integer pageNum);
+
+    Integer[] getPageList(Integer pageNum);
+
+    void checkExpiredDate();
+
+    void addProduct(CartDto putCart);
+
 }

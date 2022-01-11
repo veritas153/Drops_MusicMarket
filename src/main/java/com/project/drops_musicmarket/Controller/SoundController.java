@@ -1,5 +1,6 @@
 package com.project.drops_musicmarket.Controller;
 
+import com.project.drops_musicmarket.DTO.CartDto;
 import com.project.drops_musicmarket.DTO.SoundDto;
 import com.project.drops_musicmarket.Entity.MemberEntity;
 import com.project.drops_musicmarket.service.CartService;
@@ -13,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
+import java.math.BigDecimal;
 import java.util.List;
 
 @Controller
@@ -83,21 +85,28 @@ public class SoundController {
     }
 
     @GetMapping("/store/sounds")
-    public String addCart(@RequestParam("soundId") String productId, HttpServletRequest request){
+    public String addCart(@RequestParam("soundId") String productId, HttpServletRequest request, CartDto putCart){
         MemberEntity user = (MemberEntity) request.getSession().getAttribute("user");
 
         if (user == null) {
             return "redirect:/login";
         }
 
-        String userId = user.getMemberId();
-
         SoundDto detectSound = soundService.getSoundInfo(productId);
         String checkSoundId = detectSound.getSoundId();
 
         if (!checkSoundId.isEmpty()){
-            cartService.addProduct(detectSound, userId);
-            return "/sounds/info?" + productId;
+            String userId = user.getMemberId();
+            String checkSoundName = detectSound.getSoundName();
+            BigDecimal checkSoundPrice = detectSound.getSoundPrice();
+
+            putCart.setCartProductCode(productId);
+            putCart.setCartOwner(userId);
+            putCart.setCartProduct(checkSoundName);
+            putCart.setCartPrice(checkSoundPrice);
+
+            cartService.addProduct(putCart);
+            return "redirect:/sounds/";
         }
 
         return "";

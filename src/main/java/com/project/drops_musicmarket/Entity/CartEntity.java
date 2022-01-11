@@ -17,7 +17,7 @@ public class CartEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long cartId;
+    private long cartId;
 
     private String cartOwner;
 

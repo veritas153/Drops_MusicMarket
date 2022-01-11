@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @SpringBootApplication
 @RestController
+@EnableScheduling
 public class DropsMusicMarketApplication {
 
     public static void main(String[] args) {
