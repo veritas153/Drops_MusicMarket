@@ -22,7 +22,7 @@
 
 ## Introduction
 
-This portfolio website is for pro and amature musicians who interested in comupter music. The whole concept is inspired by *Splice*; and also some websites such as *Loopmasters*, *W.A. Production* are references for some UI. 
+This portfolio website is for pro and amature musicians who interested in comupter music. The whole concept is inspired by *Splice*; and also some websites, such as *Loopmasters* or *W.A. Production*, are references for some UI. 
 
 ## Elements
 This portfolio was constructed with these framework/library, and other sources might be added more.
@@ -32,6 +32,6 @@ This portfolio was constructed with these framework/library, and other sources m
 * MySQL
 * Bootstrap
 
-## 기타
+## Side notes
 1. The sample and plugins uploaded in this website is not actual files; except tracks in community page. Due to the copyright issue and upload limitation of Github, so there are not files that relate with.
-2. The actual payment wouldn't be working though there is a process for purchasing items. However, please do not type your real information that can relate with your financial information.
+2. Purchasing process wouldn't be worked though its elements are existed. However, please do not type your real information related with your financial information.
